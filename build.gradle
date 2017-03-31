@@ -1,0 +1,59 @@
+apply plugin: "java"
+
+repositories {
+    ivy {
+        url "http://www.nand2tetris.org/"
+        layout "pattern", {
+            artifact "/[organisation]/[module].[ext]"
+        }
+    }
+    flatDir {
+        dirs "${buildDir}/nand2tetris/tools/bin/lib"
+    }
+}
+
+configurations {
+    simulator
+}
+
+dependencies {
+    simulator "software:nand2tetris:0@zip" // http://www.nand2tetris.org/software/nand2tetris.zip
+    compile "lib:AssemblerGUI:0"
+    compile "lib:Compilers:0"
+    compile "lib:Hack:0"
+    compile "lib:HackGUI:0"
+    compile "lib:Simulators:0"
+    compile "lib:SimulatorsGUI:0"
+    compile "lib:TranslatorsGUI:0"
+}
+
+task extractSimulator(type: Copy) {
+    from zipTree(file(project.configurations.simulator.find {
+        true
+    }))
+    into buildDir
+}
+
+task copyBinFolder(type: Copy) {
+    from "${buildDir}/nand2tetris/tools/bin"
+    into "${projectDir}/bin"
+}
+
+classes {
+    dependsOn extractSimulator
+}
+
+jar {
+	from {
+		configurations.compile.collect {
+			it.isDirectory() ? it : zipTree(it)
+		}
+	}
+    manifest {
+        attributes "Main-Class": "com.github.glowingpotato.atmega328p.Main"
+    }
+}
+
+build {
+    dependsOn copyBinFolder
+}
