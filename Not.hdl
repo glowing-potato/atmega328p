@@ -1,0 +1,6 @@
+CHIP Not {
+    IN  in;
+    OUT out;
+
+    BUILTIN Not;
+}

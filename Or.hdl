@@ -1,0 +1,6 @@
+CHIP Or {
+    IN  a, b;
+    OUT out;
+
+    BUILTIN Or;
+}
