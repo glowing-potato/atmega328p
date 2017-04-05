@@ -1,0 +1,14 @@
+CHIP Byte {
+    IN in[8], load;
+    OUT out[8];
+
+    PARTS:
+    DFF(data=in[0], clock=load, out=out[0]);
+    DFF(data=in[1], clock=load, out=out[1]);
+    DFF(data=in[2], clock=load, out=out[2]);
+    DFF(data=in[3], clock=load, out=out[3]);
+    DFF(data=in[4], clock=load, out=out[4]);
+    DFF(data=in[5], clock=load, out=out[5]);
+    DFF(data=in[6], clock=load, out=out[6]);
+    DFF(data=in[7], clock=load, out=out[7]);
+}
