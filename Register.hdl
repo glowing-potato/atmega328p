@@ -1,0 +1,8 @@
+CHIP Register {
+    IN in[16], load;
+    OUT out[16];
+
+    PARTS:
+    Byte(in=in[0..7], load=load, out=out[0..7]);
+    Byte(in=in[8..15], load=load, out=out[8..15]);
+}
