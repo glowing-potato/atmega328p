@@ -1,0 +1,14 @@
+CHIP DFF {
+    IN data, clock;
+    OUT out;
+
+    /*
+    PARTS:
+    Nand(a=data, b=clock, out=a);
+    Nand(a=a, b=clock, out=b);
+    Nand(a=a, b=c, out=d);
+    Nand(a=b, b=d, out=c);
+    Copy(in=d, out=out);
+    */
+    BUILTIN DFF;
+}
