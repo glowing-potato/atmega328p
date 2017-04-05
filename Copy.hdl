@@ -1,0 +1,6 @@
+CHIP Copy {
+    IN  in;
+    OUT out;
+
+    BUILTIN Copy;
+}
